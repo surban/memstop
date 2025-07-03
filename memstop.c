@@ -64,7 +64,7 @@ void __attribute__((constructor)) memstop(void) {
 
     if (verbose && !stats) {
       fprintf(stderr,
-              "==== memstop: %d%% required, %d%% available (%ld MB / %ld MB) "
+              "==== memstop: %ld%% required, %ld%% available (%ld MB / %ld MB) "
               "====\n",
               percent, memory.available_kb * 100 / memory.total_kb,
               memory.available_kb / 1024, memory.total_kb / 1024);
