@@ -42,6 +42,7 @@ void __attribute__((constructor)) memstop(void) {
   long percent = 10;
   char *env;
   bool verbose = false;
+  bool stats = false;
   bool informed = false;
 
   env = getenv("MEMSTOP_PERCENT");
@@ -57,12 +58,18 @@ void __attribute__((constructor)) memstop(void) {
   if (env)
     verbose = true;
 
-  if (verbose)
-    fprintf(stderr, "==== memstop loaded ====\n");
-
   while (true) {
     if (get_memory_info(&memory) != 0)
       return;
+
+    if (verbose && !stats) {
+      fprintf(stderr,
+              "==== memstop: %d%% required, %d%% available (%ld MB / %ld MB) "
+              "====\n",
+              percent, memory.available_kb * 100 / memory.total_kb,
+              memory.available_kb / 1024, memory.total_kb / 1024);
+      stats = true;
+    }
 
     required_kb = memory.total_kb * percent / 100;
     if (memory.available_kb >= required_kb)
