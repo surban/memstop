@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc make
+    
+    - name: Build memstop
+      run: make
+    
+    - name: Test LD_PRELOAD functionality
+      run: LD_PRELOAD=./memstop.so true
+    
+    - name: Test with verbose output
+      run: MEMSTOP_VERBOSE=1 LD_PRELOAD=./memstop.so true
+    
+    - name: Test with different memory percentage
+      run: MEMSTOP_PERCENT=5 MEMSTOP_VERBOSE=1 LD_PRELOAD=./memstop.so true
+    
