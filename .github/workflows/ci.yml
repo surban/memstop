@@ -22,11 +22,11 @@ jobs:
       run: make
     
     - name: Test LD_PRELOAD functionality
-      run: LD_PRELOAD=./memstop.so true
+      run: LD_PRELOAD=./memstop.so ls
     
     - name: Test with verbose output
-      run: MEMSTOP_VERBOSE=1 LD_PRELOAD=./memstop.so true
+      run: MEMSTOP_VERBOSE=1 LD_PRELOAD=./memstop.so ls
     
     - name: Test with different memory percentage
-      run: MEMSTOP_PERCENT=5 MEMSTOP_VERBOSE=1 LD_PRELOAD=./memstop.so true
+      run: MEMSTOP_PERCENT=5 MEMSTOP_VERBOSE=1 LD_PRELOAD=./memstop.so ls
     
