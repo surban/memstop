@@ -12,7 +12,7 @@ Memstop is designed to prevent crashes caused by memory exhaustion in parallel p
 
 ## How It Works
 
-When loaded as a shared object (via `LD_PRELOAD`), memstop automatically runs before your application's `main()` function. It:
+When loaded as a shared object (via `LD_PRELOAD`), memstop automatically runs before your application's and all subprocesses' `main()` functions. It:
 
 1. Reads system memory information from `/proc/meminfo`
 2. Calculates the required available memory percentage (default: 10%)
