@@ -1,5 +1,5 @@
 /*
-memstop - A LD_PRELOAD shared object that delays execution memory is low.
+memstop - A LD_PRELOAD shared object that delays execution when memory is low.
 Copyright (C) 2025 Dr. Sebastian Urban
 
 This program is free software: you can redistribute it and/or modify
